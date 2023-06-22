@@ -4,6 +4,7 @@ title: Linux 套接字 API 简明调用框架
 date: "2022-10-31 00:44:10"
 tags: [linux, c, network]
 abstract: "简单归纳了 Linux 环境的 socket API 的调用框架，并记录了一些重要的参数的含义及其传递方法。"
+comments: false
 ---
 
 套接字是网络数据传输用的软件设备，表连接——两台计算机之间的连接。

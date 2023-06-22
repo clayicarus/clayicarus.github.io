@@ -1,6 +1,6 @@
 # mogiherins.info
 
-mogiherins Official Site.
+mogiherins official site.
 
 ## Based on
 
