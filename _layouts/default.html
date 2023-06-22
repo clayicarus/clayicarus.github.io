@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+{% include head.html %}
+
+<body>
+
+<section class="hero is-dark">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        <span>{{ site.title | append: " Institude" }}</span>
+      </h1>
+      <!-- <h4 class="subtitle" id="quote"></h4> -->
+      <h4 class="subtitle"><span>{{ site.motto }}</span></h4>
+    </div>
+  </div>
+</section>
+
+<div class="main-container">
+  <div class="tile is-ancestor is-vertical">
+
+
+    <nav class="nav has-shadow">
+
+      <div class="nav-left">
+
+        <a href="{{"/" | relative_url}}" class="nav-item">
+          <span class="icon">
+            <!-- <i class="fa fa-home" aria-hidden="true" title="Homepage"></i> -->
+            <svg name="home" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+              <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
+              <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
+            </svg>
+          </span>
+        </a>
+
+        <a href="{{ site.author.github }}" class="nav-item">
+          <span class="icon">
+            <!-- <i class="fa fa-github" aria-hidden="true" title="Github"></i> -->
+            <svg name="github" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+          </span>
+        </a>
+
+        <!-- <div class="nav-item" id="searchFieldNav">
+          <div class="field has-addons">
+            <p class="control">
+              <input class="input is-small" type="text" placeholder="Find an article" id="search-text">
+            </p>
+            <p class="control">
+              <a class="button is-dark is-small" onclick="searchHandler();">
+                Search
+              </a>
+            </p>
+          </div>
+        </div> -->
+
+      </div>
+
+      <div class="nav-right nav-menu" id='nav-menu'>
+        <a href="{{ "/archive" | relative_url }}" class="nav-item">归档</a>
+        <a href="{{ "/tags" | relative_url }}" class="nav-item">分类</a>
+      </div>
+
+      <span class="nav-toggle" id="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+    </nav>
+
+    <div class="tile is-parent">
+      <div class="tile is-8 is-child main">
+
+        {{ content }}
+
+      </div>
+
+      <div class="tile is-4 is-child">
+        <div class="tile is-parent is-vertical sidebar">
+
+          <div class="tile is-child widget">
+
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title nice-title">
+                  最近发表
+                </p>
+              </header>
+              <div class="card-content">
+                <div class="content nice-text">
+                  <ul>
+                  {% for post in site.posts limit:3 %}
+                  <li><a href="{{ post.url | relative_url }}">
+                    {{ post.title }}
+                  </a></li>
+                  {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tile is-child widget">
+
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title nice-title">
+                  关于作者
+                </p>
+              </header>
+              <div class="card-content">
+                <div class="content nice-text">
+                  <!-- <img src="{{ site.baseurl }}/assets/images/Dust_Bunny.jpg"/> -->
+                  <div class="avatar has-text-centered">
+                    <figure>
+                      <img src="{{ site.baseurl }}/assets/images/avatar.png" title="author"/>
+                    </figure>
+                  </div>
+                  <div class="has-text-centered">
+                    <span>{{ site.author.name }}</span>
+                    <br>
+                    <small>
+                      <a href="{{ site.author.email | prepend: "mailto:" }}">
+                        <span class="icon">
+                          <svg name="email" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
+                            <path d="M14.247 14.269c1.01 0 1.587-.857 1.587-2.025v-.21C15.834 10.43 14.64 9 12.52 9h-.035C10.42 9 9 10.36 9 12.432v.214C9 14.82 10.438 16 12.358 16h.044c.594 0 1.018-.074 1.237-.175v-.73c-.245.11-.673.18-1.18.18h-.044c-1.334 0-2.571-.788-2.571-2.655v-.157c0-1.657 1.058-2.724 2.64-2.724h.04c1.535 0 2.484 1.05 2.484 2.326v.118c0 .975-.324 1.39-.639 1.39-.232 0-.41-.148-.41-.42v-2.19h-.906v.569h-.03c-.084-.298-.368-.63-.954-.63-.778 0-1.259.555-1.259 1.4v.528c0 .892.49 1.434 1.26 1.434.471 0 .896-.227 1.014-.643h.043c.118.42.617.648 1.12.648Zm-2.453-1.588v-.227c0-.546.227-.791.573-.791.297 0 .572.192.572.708v.367c0 .573-.253.744-.564.744-.354 0-.581-.215-.581-.8Z"/>
+                          </svg>
+                        </span>
+                        <span>{{ site.author.email }}</span>
+                      </a>
+                    </small>
+                    <br>
+                    <small>
+                      <a href="{{ site.author.github }}">
+                        <span class="icon">
+                          <svg name="github" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                          </svg>
+                        </span>
+                        <span>{{ site.author.github }}</span>
+                      </a>
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="tile is-child widget">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title nice-title">
+                  关于 MMH Ins.
+                </p>
+              </header>
+              <div class="card-content">
+                <div style="padding: 12px;">
+                  <span>
+                    现代魔法遗物研究所（Modern Magic Heritage Institude）
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="tile is-child widget">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title nice-title">
+                  Recommended Websites
+                </p>
+              </header>
+              <div class="card-content">
+                <div class="content nice-text">
+                  <ul>
+                    <li>
+                      <a href="https://xkcd.com">xkcd</a>
+                    </li>
+                    <li>
+                      <a href="http://commitstrip.com">Commit Strip</a>
+                    </li>
+                    <li>
+                      <a href="http://www.smbc-comics.com">SMBC Comics</a>
+                    </li>
+                    <li>
+                      <a href="https://blog.codinghorror.com">Coding Horror</a>
+                    </li>
+                    <li>
+                      <a href="http://waitbutwhy.com">Wait Buy Why</a>
+                    </li>
+                    <li>
+                      <a href="https://simplysoch.wordpress.com/">Simply Soch</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        Some rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- js -->
+<script src="{{ site.baseurl }}/assets/js/custom.js"></script>
+</body>
+</html>
